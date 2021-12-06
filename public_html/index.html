@@ -30,6 +30,17 @@ img {
   </div>
  </div>
 
+
+ <title>W3.CSS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+.mySlides {display:none}
+.w3-left, .w3-right, .w3-badge {cursor:pointer}
+.w3-badge {height:13px;width:13px;padding:0}
+</style>
+<body>
+
   <!-- Navbar on small screens -->
   <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium">
     <a href="#Research" class="w3-bar-item w3-button">Research</a>
@@ -44,10 +55,10 @@ img {
   <div class="w3-container w3-center" style="margin-top:80px" id="showcase">
     <h1 class="w3-l"><b>High Performance Power Electronics Research Group</b></h1>
     <h1 class="w3-xlarge w3-text-red"><b>Indian Institute of Technology, Delhi</b></h1>
-    <hr align="w3-center" style="margin-left:45%; margin-right:45%; border:5px solid red" class="w3-round">
+    <hr align="w3-center" style="margin-left:30%; margin-right:30%; border:1px solid red" class="w3-round">
   </div>
 
-
+<!--
 <div class="slideshow-container">
   <img class="mySlides fade" src="fig1.png" style="width:50%">
   <img class="mySlides fade" src="fig2.png" style="width:50%">
@@ -57,6 +68,23 @@ img {
   <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
   <button class="w3-button w3-black w3-display-right" onclick="plusDivs(+1)">&#10095;</button>
 </div> 
+-->
+
+<div class="w3-content w3-display-container" style="max-width:800px">
+  <img class="mySlides fade" src="fig1.png" style="width:100%">
+  <img class="mySlides fade" src="fig2.png" style="width:100%">
+  <img class="mySlides fade" src="fig3.png" style="width:100%">
+  <img class="mySlides fade" src="fig4.png" style="width:100%">
+  <img class="mySlides fade" src="fig5.png" style="width:100%">
+  <div class="w3-center w3-container w3-section w3-xlarge w3-text-red w3-display-bottommiddle" style="width:100%">
+    <div class="w3-left w3-hover-text-khaki" onclick="plusDivs(-1)">&#10094;</div>
+    <div class="w3-right w3-hover-text-khaki" onclick="plusDivs(1)">&#10095;</div>    
+    <span class="w3-badge demo w3-border w3-transparent w3-hover-red" onclick="currentDiv(1)"></span>
+    <span class="w3-badge demo w3-border w3-transparent w3-hover-red" onclick="currentDiv(2)"></span>
+    <span class="w3-badge demo w3-border w3-transparent w3-hover-red" onclick="currentDiv(3)"></span>
+    <span class="w3-badge demo w3-border w3-transparent w3-hover-red" onclick="currentDiv(4)"></span>
+    <span class="w3-badge demo w3-border w3-transparent w3-hover-red" onclick="currentDiv(5)"></span>
+  </div>
 </div>
  
 <!-- Research -->
@@ -94,31 +122,12 @@ img {
       <p><i class="fa fa-phone w3-text-teal w3-xlarge"></i>  +00 1515151515</p>
       <p><i class="fa fa-envelope-o w3-text-teal w3-xlarge"></i>  test@test.com</p>
     </div>
-    <div class="w3-col m7">
-      <form class="w3-container w3-card-4 w3-padding-16 w3-white" action="/action_page.php" target="_blank">
-      <div class="w3-section">      
-        <label>Name</label>
-        <input class="w3-input" type="text" name="Name" required>
       </div>
-      <div class="w3-section">      
-        <label>Email</label>
-        <input class="w3-input" type="text" name="Email" required>
-      </div>
-      <div class="w3-section">      
-        <label>Message</label>
-        <input class="w3-input" type="text" name="Message" required>
-      </div>  
-      <input class="w3-check" type="checkbox" checked name="Like">
-      <label>I Like it!</label>
-      <button type="submit" class="w3-button w3-right w3-theme">Send</button>
-      </form>
-    </div>
-  </div>
 </div>
 
 
+<!--
 <script>
-
 // Manual Slideshow 
 var slideIndex = 1;
 showDivs(slideIndex);
@@ -154,6 +163,62 @@ function openNav() {
   }
 }
 </script>
+-->
+
+
+
+<script>
+  var slideIndex = 1;
+  var timer = null;
+  showDivs(slideIndex);
+  
+  function plusDivs(n) {
+    clearTimeout(timer);
+    showDivs(slideIndex += n);
+  }
+  
+  function currentDiv(n) {
+    clearTimeout(timer);
+    showDivs(slideIndex = n);
+  }
+  
+  function showDivs(n) {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    var dots = document.getElementsByClassName("demo");
+
+    if (n > x.length) {slideIndex = 1}
+    if (n < 1) {slideIndex = x.length}
+    if (n==undefined) {n = ++slideIndex}
+
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";  
+    }
+    for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" w3-red", "");
+    }
+    x[slideIndex-1].style.display = "block";  
+    dots[slideIndex-1].className += " w3-red";
+    timer = setTimeout(showSlides, 5);
+  }
+
+  // Close side navigation
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+}
+
+// Used to toggle the menu on smaller screens when clicking on the menu button
+function openNav() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+</script>
+
+
 
 </body>
 </html>
