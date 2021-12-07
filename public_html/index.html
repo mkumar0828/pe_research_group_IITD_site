@@ -100,7 +100,7 @@ img {
   <button class="w3-button w3-black w3-display-right" onclick="plusDivs(+1)">&#10095;</button>
 </div> 
 -->
-
+<div class="slideshow-container">
 <div class="w3-content w3-display-container w3-center mySlides fade">
   <img src="fig2.png" style="width:70%">
   <div class="w3-center w3-large w3-container">
@@ -151,37 +151,39 @@ img {
     <span class="demo" onclick="currentDiv(4)"></span>
     <span class="demo" onclick="currentDiv(5)"></span>
   </div>
+  </div>
 
  
 <!-- Research -->
-<div class="w3-main" style="margin-top:20px; margin-left:100px; margin-right:100px" id="Research">
+<div class="w3-container" style="margin-top:20px; margin-left:100px; margin-right:100px" id="Research">
   <div class="w3-row w3-padding-16">
     <h2>Research</h2>
-    <div class="w3-panel w3-border-top w3-border-teal">
-      <h3 class="w3-text-teal">Wireless Power Transfer</h3>
+    <div class="w3-panel w3-border-top w3-border-red">
+      <h3 class="w3-text-red">Temperature Dependent SiC MOSFETs Characterization</h3>
       <div align="justify">
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum
         dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
       </div>
-      <h3 class="w3-text-teal">On-Board Vehicle Charger</h3>
+      <h3 class="w3-text-red">On-Board Vehicle Charger</h3>
       <div align="justify">
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum
         dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
       </div>
-      <h3 class="w3-text-teal">Wireless Power Transfer</h3>
+      <h3 class="w3-text-red">Wireless Power Transfer</h3>
       <div align="justify">
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum
         dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
       </div>
     </div>
   </div>
+</div>
   
 
 <!-- Contact Container -->
-<div class="w3-container w3-padding-64 w3-theme-l5" id="contact">
+<div class="w3-container" style="margin-top:20px; margin-left:100px; margin-right:100px" id="Contact Us">
   <div class="w3-row">
     <div class="w3-col m5">
-    <div class="w3-padding-16"><span class="w3-xlarge w3-border-teal w3-bottombar">Contact Us</span></div>
+    <div class="w3-padding-16"><span class="w3-xlarge w3-border-red w3-bottombar">Contact Us</span></div>
       <h3>Address</h3>
       <p>Swing by for a cup of coffee, or whatever.</p>
       <p><i class="fa fa-map-marker w3-text-teal w3-xlarge"></i>  Chicago, US</p>
@@ -191,46 +193,9 @@ img {
       </div>
 </div>
 
-
-<!--
-<script>
-// Manual Slideshow 
-var slideIndex = 1;
-showDivs(slideIndex);
-
-function plusDivs(n) {
-  showDivs(slideIndex += n);
-}
-
-function showDivs(n) {
-  var i;
-  var x = document.getElementsByClassName("mySlides");
-  if (n > x.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = x.length} ;
-  for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";
-  }
-  x[slideIndex-1].style.display = "block";
-}
-
-
-// Close side navigation
-function w3_close() {
-  document.getElementById("mySidebar").style.display = "none";
-}
-
-// Used to toggle the menu on smaller screens when clicking on the menu button
-function openNav() {
-  var x = document.getElementById("navDemo");
-  if (x.className.indexOf("w3-show") == -1) {
-    x.className += " w3-show";
-  } else { 
-    x.className = x.className.replace(" w3-show", "");
-  }
-}
-</script>
--->
-
+<footer class="w3-padding-16 w3-black w3-center w3-margin-top">
+  <p>Developed & Maintained by HPERG, IIT Delhi</p>
+</footer>
 
 
 <script>
@@ -238,15 +203,24 @@ function openNav() {
   var timer = null;
   showDivs(slideIndex);
   
-  function plusDivs(n) {
-    clearTimeout(timer);
-    showDivs(slideIndex += n);
+function plusDivs(n){
+  clearInterval(myTimer);
+  if (n < 0){
+    showDivs(slideIndex -= 1);
+  } else {
+   showDivs(slideIndex += 1); 
+  }
+  if (n === -1){
+    myTimer = setInterval(function(){plusDivs(n + 2)}, 3000);
+  } else {
+    myTimer = setInterval(function(){plusDivs(n + 1)}, 3000);
+  }
   }
   
-  function currentDiv(n) {
-    clearTimeout(timer);
-    showDivs(slideIndex = n);
-  }
+  function currentDiv(n) {clearInterval(myTimer);
+  myTimer = setInterval(function(){plusDivs(n + 1)}, 3000);
+  showDivs(slideIndex = n);}
+
   
   function showDivs(n) {
     var i;
@@ -265,9 +239,9 @@ function openNav() {
     }
     x[slideIndex-1].style.display = "block";  
     dots[slideIndex-1].className += " active";
-    timer = setTimeout(showSlides, 5);
-  }
-
+    }
+  window.addEventListener("load",function() {showDivs(slideIndex);
+    myTimer = setInterval(function(){plusDivs(1)}, 3000);})
 
 // Used to toggle the menu on smaller screens when clicking on the menu button
 function openNav() {
